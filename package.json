@@ -1,0 +1,24 @@
+{
+  "name": "nle-kafka",
+  "version": "1.0.0",
+  "description": "kafka API for NLE",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "nle",
+    "kafka",
+    "express",
+    "kafka-node"
+  ],
+  "author": "caesar",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "kafka-node": "^5.0.0",
+    "request": "^2.88.2"
+  }
+}
