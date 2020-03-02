@@ -2,7 +2,7 @@ const config = require('./config.js');
 const kafka = require('kafka-node');
 
 exports.bookings = (req, res) => {
-    const kafka_topic = 'nle-booking';
+    var kafka_topic_parent = 'nle-booking';
     const client = new kafka.KafkaClient({
         kafkaHost: config.kafka_host
     });
@@ -11,7 +11,7 @@ exports.bookings = (req, res) => {
     // var Offset = kafka.Offset;
     var booking = [];
     var consumer = new Consumer(client, [{
-        topic: kafka_topic,
+        topic: kafka_topic_parent,
         partition: 0,
         offset: 0
     }], {
@@ -23,6 +23,7 @@ exports.bookings = (req, res) => {
 
     consumer.on("message", function (message) {
         booking.push(message.value.toString());
+        var kafka_topic_child = 'nle-booking-'+message.value.id.toString();
         // console.log(booking);
         if (message.offset == (message.highWaterOffset - 1)) {
             consumer.close(true, function (err, message) {
