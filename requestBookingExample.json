@@ -1,0 +1,154 @@
+{
+    "idRequestBooking": "fa5cc3b2-43ba-43ae-9474-81656b2e8692",
+    "idServiceOrder": "24299",
+    "hargaPenawaran": 479400,
+    "waktuPenawaran": "2019-12-17 23:54:32",
+    "timestamp": "2019-12-17 23:54:32",
+    "status": "Process",
+    "paidStatus": 1,
+    "idPlatform": "PL001",
+    "isBooked": 1,
+    "created_date": "2019-12-11 10:52:28",
+    "booked_date": "2019-12-11 22:06:37",
+    "payment_method": [{
+            "id_method_payment": 321,
+            "method": "Virtual Account",
+            "channel": "CIMB Niaga",
+            "idRequestBooking": "fa5cc3b2-43ba-43ae-9474-81656b2e8692"
+        },
+        {
+            "id_method_payment": 322,
+            "method": "e-Wallet",
+            "channel": "Doku",
+            "idRequestBooking": "fa5cc3b2-43ba-43ae-9474-81656b2e8692"
+        },
+        {
+            "id_method_payment": 323,
+            "method": "Credit card",
+            "channel": "Mandiri",
+            "idRequestBooking": "fa5cc3b2-43ba-43ae-9474-81656b2e8692"
+        },
+        {
+            "id_method_payment": 324,
+            "method": "Virtual Account",
+            "channel": "Mandiri",
+            "idRequestBooking": "fa5cc3b2-43ba-43ae-9474-81656b2e8692"
+        },
+        {
+            "id_method_payment": 325,
+            "method": "Virtual Account",
+            "channel": "BNI",
+            "idRequestBooking": "fa5cc3b2-43ba-43ae-9474-81656b2e8692"
+        },
+        {
+            "id_method_payment": 326,
+            "method": "e-Wallet",
+            "channel": "Link Aja",
+            "idRequestBooking": "fa5cc3b2-43ba-43ae-9474-81656b2e8692"
+        },
+        {
+            "id_method_payment": 327,
+            "method": "Store",
+            "channel": "Indomart",
+            "idRequestBooking": "fa5cc3b2-43ba-43ae-9474-81656b2e8692"
+        },
+        {
+            "id_method_payment": 328,
+            "method": "Credit card",
+            "channel": "BNI",
+            "idRequestBooking": "fa5cc3b2-43ba-43ae-9474-81656b2e8692"
+        }
+    ],
+    "booking": {
+        "idRequestBooking": "fa5cc3b2-43ba-43ae-9474-81656b2e8692",
+        "booking_date": "2019-12-18 10:52:24",
+        "destination": "Bekasi, Bekasi City, West Java, Indonesia",
+        "depo": "Multi Bina Prinma",
+        "plan_date": "2019-12-18 10:52:24",
+        "bl_no": "KKLUMFM8689700",
+        "bl_date": "2012-06-02",
+        "sp2valid_date": "2019-12-19",
+        "spcvalid_date": "2019-12-19",
+        "gross_weight": null,
+        "id_User": "018245894059000",
+        "statusRequest": "",
+        "id_platform": "PL001",
+        "pod_lat": "-6.1066044",
+        "pod_lon": "106.8942988",
+        "destination_lat": "-6.2382699",
+        "destination_lon": "106.97557260000008",
+        "depo_lat": "-6.14579171",
+        "depo_lon": "106.9396198",
+        "total_distance": "28.20",
+        "container": [{
+            "idContainer": 82,
+            "container_no": "SKLU0748988",
+            "container_size": "20",
+            "container_type": "null",
+            "idRequestBooking": "fa5cc3b2-43ba-43ae-9474-81656b2e8692"
+        }],
+        "platform": {
+            "id_platform": "PL001",
+            "nama_platform": "iTruck.ID",
+            "desc_platform": null,
+            "kat_platform": null,
+            "company": "PT Toms Daya Integra",
+            "tcUrl": "http://toms-id.com/itruck_front/term_condition.php",
+            "paymentUrl": "http://toms-id.com/itruck-dev1/view/doku_checkout.php?enc=[ENC_CODE]&id=[ID_REQUEST_BOOKING]"
+        },
+        "pod": "JICT"
+    },
+    "dtransporter": {
+        "idRequestBooking": "fa5cc3b2-43ba-43ae-9474-81656b2e8692",
+        "timestamp": "2020-01-18 12:00:00",
+        "billingCode": "TS",
+        "created_date": "2020-01-22 10:39:29",
+        "transporterDetil": [{
+            "idDataTransporterDetil": 23,
+            "idRequestBooking": "fa5cc3b2-43ba-43ae-9474-81656b2e8692",
+            "container_no": "SKLU0748988",
+            "container_size": null,
+            "container_type": null,
+            "idEseal": "1a",
+            "truckPlateNo": "B 2938 LO",
+            "namaDriver": "Adi",
+            "hpDriver": "0887654321",
+            "urlTracking": "www.ceisa4_0.com",
+            "isFinished": 0,
+            "bl_no": null,
+            "bl_date": null,
+            "sp2valid_date": null,
+            "spcvalid_date": null,
+            "gross_weight": null,
+            "pod": null,
+            "pod_lat": null,
+            "pod_lon": null,
+            "destination": null,
+            "destination_lat": null,
+            "destination_lon": null,
+            "depo": null,
+            "depo_lat": null,
+            "depo_lon": null,
+            "total_distance": null,
+            "id_platform": null,
+            "nama_platform": null,
+            "company": null,
+            "billing_code": null,
+            "booked_date": null,
+            "logtruck": [{
+                    "idLogTruck": 23,
+                    "idDataTransporterDetil": 23,
+                    "status": "Driver Found",
+                    "create_date": "2020-01-22 10:39:29"
+                },
+                {
+                    "idLogTruck": 55,
+                    "idDataTransporterDetil": 23,
+                    "status": "Arrived at POD",
+                    "create_date": "2020-01-27 12:23:58"
+                }
+            ],
+            "status": "Arrived at POD"
+        }]
+    }
+}

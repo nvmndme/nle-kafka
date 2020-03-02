@@ -4,8 +4,8 @@ module.exports = (app) => {
     // [PLATFORM] Retrieve all available Bookings
     app.get('/Booking', contr.bookings);
 
-    // [PLATFORM] [PENGGUNA JASA] Retrieve Booking detail with Booking number bn
-    app.get('/Booking/:bn', contr.bookingBn);
+    // [PLATFORM] [PENGGUNA JASA] Retrieve Booking detail with user id uid
+    app.get('/DetilBooking/idUser/:uid', contr.bookingUid);
 
     // [PENGGUNA JASA] Post Booking
     app.post('/Booking', contr.sendBooking);

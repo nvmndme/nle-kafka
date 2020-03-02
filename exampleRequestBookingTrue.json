@@ -1,0 +1,257 @@
+{
+    "idRequestBooking": "349db0f4-81e8-49a3-baef-cf1633b4fe6f",
+    "booking_date": "2019-12-11 08:46:12",
+    "destination": "Bengkulu, Bengkulu City, Bengkulu, Indonesia",
+    "depo": "PT. Glorious Interbuana",
+    "plan_date": "2019-12-11 08:46:12",
+    "bl_no": "KKLUXIA9956500",
+    "bl_date": "2011-12-06",
+    "sp2valid_date": "2019-12-11",
+    "spcvalid_date": "2019-12-12",
+    "gross_weight": null,
+    "id_User": "018245894059000",
+    "statusRequest": "",
+    "id_platform": "PL001",
+    "pod_lat": null,
+    "pod_lon": null,
+    "destination_lat": null,
+    "destination_lon": null,
+    "depo_lat": null,
+    "depo_lon": null,
+    "total_distance": null,
+    "container": [{
+            "idContainer": 11,
+            "container_no": "SKLU3505507",
+            "container_size": "20",
+            "container_type": "null",
+            "idRequestBooking": "349db0f4-81e8-49a3-baef-cf1633b4fe6f"
+        },
+        {
+            "idContainer": 12,
+            "container_no": "TGHU3839074",
+            "container_size": "20",
+            "container_type": "null",
+            "idRequestBooking": "349db0f4-81e8-49a3-baef-cf1633b4fe6f"
+        },
+        {
+            "idContainer": 13,
+            "container_no": "CRXU3010530",
+            "container_size": "20",
+            "container_type": "null",
+            "idRequestBooking": "349db0f4-81e8-49a3-baef-cf1633b4fe6f"
+        },
+        {
+            "idContainer": 14,
+            "container_no": "GLDU5640716",
+            "container_size": "20",
+            "container_type": "null",
+            "idRequestBooking": "349db0f4-81e8-49a3-baef-cf1633b4fe6f"
+        },
+        {
+            "idContainer": 15,
+            "container_no": "BMOU2732722",
+            "container_size": "20",
+            "container_type": "null",
+            "idRequestBooking": "349db0f4-81e8-49a3-baef-cf1633b4fe6f"
+        },
+        {
+            "idContainer": 16,
+            "container_no": "SKLU1324270",
+            "container_size": "20",
+            "container_type": "null",
+            "idRequestBooking": "349db0f4-81e8-49a3-baef-cf1633b4fe6f"
+        },
+        {
+            "idContainer": 17,
+            "container_no": "TCKU3261354",
+            "container_size": "20",
+            "container_type": "null",
+            "idRequestBooking": "349db0f4-81e8-49a3-baef-cf1633b4fe6f"
+        },
+        {
+            "idContainer": 18,
+            "container_no": "SKLU0748988",
+            "container_size": "20",
+            "container_type": "null",
+            "idRequestBooking": "349db0f4-81e8-49a3-baef-cf1633b4fe6f"
+        },
+        {
+            "idContainer": 19,
+            "container_no": "CAXU3342464",
+            "container_size": "20",
+            "container_type": "null",
+            "idRequestBooking": "349db0f4-81e8-49a3-baef-cf1633b4fe6f"
+        },
+        {
+            "idContainer": 20,
+            "container_no": "GESU3095093",
+            "container_size": "20",
+            "container_type": "null",
+            "idRequestBooking": "349db0f4-81e8-49a3-baef-cf1633b4fe6f"
+        },
+        {
+            "idContainer": 21,
+            "container_no": "LLTU2046415",
+            "container_size": "20",
+            "container_type": "null",
+            "idRequestBooking": "349db0f4-81e8-49a3-baef-cf1633b4fe6f"
+        },
+        {
+            "idContainer": 22,
+            "container_no": "CRXU3269917",
+            "container_size": "20",
+            "container_type": "null",
+            "idRequestBooking": "349db0f4-81e8-49a3-baef-cf1633b4fe6f"
+        },
+        {
+            "idContainer": 23,
+            "container_no": "SEGU2129125",
+            "container_size": "20",
+            "container_type": "null",
+            "idRequestBooking": "349db0f4-81e8-49a3-baef-cf1633b4fe6f"
+        },
+        {
+            "idContainer": 24,
+            "container_no": "TCKU3059723",
+            "container_size": "20",
+            "container_type": "null",
+            "idRequestBooking": "349db0f4-81e8-49a3-baef-cf1633b4fe6f"
+        },
+        {
+            "idContainer": 25,
+            "container_no": "SKLU1414922",
+            "container_size": "20",
+            "container_type": "null",
+            "idRequestBooking": "349db0f4-81e8-49a3-baef-cf1633b4fe6f"
+        },
+        {
+            "idContainer": 26,
+            "container_no": "SKLU1607536",
+            "container_size": "20",
+            "container_type": "null",
+            "idRequestBooking": "349db0f4-81e8-49a3-baef-cf1633b4fe6f"
+        },
+        {
+            "idContainer": 27,
+            "container_no": "SKLU3505507",
+            "container_size": "20",
+            "container_type": "null",
+            "idRequestBooking": "349db0f4-81e8-49a3-baef-cf1633b4fe6f"
+        },
+        {
+            "idContainer": 28,
+            "container_no": "CAXU3342464",
+            "container_size": "20",
+            "container_type": "null",
+            "idRequestBooking": "349db0f4-81e8-49a3-baef-cf1633b4fe6f"
+        },
+        {
+            "idContainer": 29,
+            "container_no": "BMOU2732722",
+            "container_size": "20",
+            "container_type": "null",
+            "idRequestBooking": "349db0f4-81e8-49a3-baef-cf1633b4fe6f"
+        },
+        {
+            "idContainer": 30,
+            "container_no": "SKLU1324270",
+            "container_size": "20",
+            "container_type": "null",
+            "idRequestBooking": "349db0f4-81e8-49a3-baef-cf1633b4fe6f"
+        },
+        {
+            "idContainer": 31,
+            "container_no": "SKLU1414922",
+            "container_size": "20",
+            "container_type": "null",
+            "idRequestBooking": "349db0f4-81e8-49a3-baef-cf1633b4fe6f"
+        },
+        {
+            "idContainer": 32,
+            "container_no": "SEGU2129125",
+            "container_size": "20",
+            "container_type": "null",
+            "idRequestBooking": "349db0f4-81e8-49a3-baef-cf1633b4fe6f"
+        },
+        {
+            "idContainer": 33,
+            "container_no": "CRXU3010530",
+            "container_size": "20",
+            "container_type": "null",
+            "idRequestBooking": "349db0f4-81e8-49a3-baef-cf1633b4fe6f"
+        },
+        {
+            "idContainer": 34,
+            "container_no": "LLTU2046415",
+            "container_size": "20",
+            "container_type": "null",
+            "idRequestBooking": "349db0f4-81e8-49a3-baef-cf1633b4fe6f"
+        },
+        {
+            "idContainer": 35,
+            "container_no": "TCKU3261354",
+            "container_size": "20",
+            "container_type": "null",
+            "idRequestBooking": "349db0f4-81e8-49a3-baef-cf1633b4fe6f"
+        },
+        {
+            "idContainer": 36,
+            "container_no": "TCKU3059723",
+            "container_size": "20",
+            "container_type": "null",
+            "idRequestBooking": "349db0f4-81e8-49a3-baef-cf1633b4fe6f"
+        },
+        {
+            "idContainer": 37,
+            "container_no": "GESU3095093",
+            "container_size": "20",
+            "container_type": "null",
+            "idRequestBooking": "349db0f4-81e8-49a3-baef-cf1633b4fe6f"
+        },
+        {
+            "idContainer": 38,
+            "container_no": "SKLU0748988",
+            "container_size": "20",
+            "container_type": "null",
+            "idRequestBooking": "349db0f4-81e8-49a3-baef-cf1633b4fe6f"
+        },
+        {
+            "idContainer": 39,
+            "container_no": "GLDU5640716",
+            "container_size": "20",
+            "container_type": "null",
+            "idRequestBooking": "349db0f4-81e8-49a3-baef-cf1633b4fe6f"
+        },
+        {
+            "idContainer": 40,
+            "container_no": "TGHU3839074",
+            "container_size": "20",
+            "container_type": "null",
+            "idRequestBooking": "349db0f4-81e8-49a3-baef-cf1633b4fe6f"
+        },
+        {
+            "idContainer": 41,
+            "container_no": "SKLU1607536",
+            "container_size": "20",
+            "container_type": "null",
+            "idRequestBooking": "349db0f4-81e8-49a3-baef-cf1633b4fe6f"
+        },
+        {
+            "idContainer": 42,
+            "container_no": "CRXU3269917",
+            "container_size": "20",
+            "container_type": "null",
+            "idRequestBooking": "349db0f4-81e8-49a3-baef-cf1633b4fe6f"
+        }
+    ],
+    "platform": {
+        "id_platform": "PL001",
+        "nama_platform": "iTruck.ID",
+        "desc_platform": null,
+        "kat_platform": null,
+        "company": "PT Toms Daya Integra",
+        "tcUrl": "http://toms-id.com/itruck_front/term_condition.php",
+        "paymentUrl": "http://toms-id.com/itruck-dev1/view/doku_checkout.php?enc=[ENC_CODE]&id=[ID_REQUEST_BOOKING]"
+    },
+    "pod": "MAL"
+}
