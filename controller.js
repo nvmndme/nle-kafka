@@ -1,5 +1,6 @@
 const config = require('./config.js');
 const kafka = require('kafka-node');
+const fs = require('fs');
 
 exports.bookings = (req, res) => {
     var booking = [];
@@ -9,7 +10,7 @@ exports.bookings = (req, res) => {
     });
 
     var Consumer = kafka.Consumer;
-    
+
     var consumer = new Consumer(client, [{
         topic: kafka_topic_parent,
         partition: 0,
@@ -26,7 +27,7 @@ exports.bookings = (req, res) => {
 
         if (message.offset == (message.highWaterOffset - 1)) {
             consumer.close(true, function (err, message) {
-                res.send(booking);
+                res.send(JSON.parse(booking));
                 // console.log(booking);
             });
         }
@@ -43,13 +44,19 @@ exports.bookings = (req, res) => {
     });
 };
 
-exports.bookingUid = (req, res) => {
-};
+exports.bookingUid = (req, res) => {};
+
+exports.offersBn = (req, res) => {};
+
+exports.offerOn = (req, res) => {};
 
 exports.sendBooking = (req, res) => {
-    const book = req.body;
+    const book = JSON.parse(fs.readFileSync('exampleRequestBookingTrue.json'));
+    // const book = req.body;
     const kafka_topic = 'nle-booking';
-    const client = new kafka.KafkaClient({kafkaHost: config.kafka_host});
+    const client = new kafka.KafkaClient({
+        kafkaHost: config.kafka_host
+    });
     const Producer = kafka.HighLevelProducer;
     const producer = new Producer(client);
 
@@ -61,7 +68,7 @@ exports.sendBooking = (req, res) => {
             depo: book.depo,
             plan_date: book.plan_date,
             bl_no: book.bl_no,
-            bl_date: book.bl_no,
+            bl_date: book.bl_date,
             sp2valid_date: book.sp2valid_date,
             spcvalid_date: book.spcvalid_date,
             gross_weight: book.gross_weight,
@@ -75,7 +82,7 @@ exports.sendBooking = (req, res) => {
             total_distance: book.total_distance,
             container: book.container,
             platform: book.platform,
-            pod: book.pod,
+            pod: book.pod
         };
 
         var payload = [{
@@ -90,6 +97,7 @@ exports.sendBooking = (req, res) => {
             if (error) {
                 console.error('error: ', error);
                 res.status(403).send('error');
+                process.exit();
             } else {
                 var formattedResult = result[0];
                 console.log('result: ', result)
@@ -99,18 +107,16 @@ exports.sendBooking = (req, res) => {
         return sent;
     });
     res.status(200).send(messageR);
-};
-
-exports.offersBn = (req, res) => {
-};
-
-exports.offerOn = (req, res) => {
+    producer.close();
 };
 
 exports.sendOffers = (req, res) => {
-    const offer = req.body;
+    // const offer = req.body;
+
     const kafka_topic = 'nle-booking-' + book.idRequestBooking.toString();
-    const client = new kafka.KafkaClient({kafkaHost: config.kafka_host});
+    const client = new kafka.KafkaClient({
+        kafkaHost: config.kafka_host
+    });
     const Producer = kafka.HighLevelProducer;
     const producer = new Producer(client);
 
@@ -134,7 +140,7 @@ exports.sendOffers = (req, res) => {
         var payload = [{
             topic: kafka_topic,
             messages: JSON.stringify(message),
-            key: offer.idPlatform.toString()+offer.idRequestBooking.toString(),
+            key: offer.idPlatform.toString() + offer.idRequestBooking.toString(),
             attributes: 1 /* Use GZip compression for the payload */
         }];
 
@@ -143,13 +149,15 @@ exports.sendOffers = (req, res) => {
             if (error) {
                 console.error('error: ', error);
                 res.status(403).send('error');
+                process.exit();
             } else {
                 var formattedResult = result[0];
-                console.log('result: ', result)
+                console.log('result: ', result);
                 return result;
             }
         });
         return sent;
     });
     res.status(200).send(messageR);
+    producer.close();
 };
