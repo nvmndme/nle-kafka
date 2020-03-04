@@ -60,7 +60,7 @@ exports.sendBooking = (req, res) => {
     const Producer = kafka.HighLevelProducer;
     const producer = new Producer(client);
 
-    var messageR = producer.on('ready', async function () {
+    producer.on('ready', async function () {
         var message = {
             idRequestBooking: book.idRequestBooking,
             booking_date: book.booking_date,
@@ -100,14 +100,11 @@ exports.sendBooking = (req, res) => {
                 process.exit();
             } else {
                 var formattedResult = result[0];
-                console.log('result: ', result)
-                return result;
+                console.log('result: ', result);
+                res.status(200).send(result);
             }
         });
-        return sent;
     });
-    res.status(200).send(messageR);
-    producer.close();
 };
 
 exports.sendOffers = (req, res) => {
@@ -149,7 +146,7 @@ exports.sendOffers = (req, res) => {
             if (error) {
                 console.error('error: ', error);
                 res.status(403).send('error');
-                process.exit();
+                // process.exit();
             } else {
                 var formattedResult = result[0];
                 console.log('result: ', result);
@@ -159,5 +156,5 @@ exports.sendOffers = (req, res) => {
         return sent;
     });
     res.status(200).send(messageR);
-    producer.close();
+    // producer.close();
 };
