@@ -60,7 +60,7 @@ exports.sendBooking = (req, res) => {
     const Producer = kafka.HighLevelProducer;
     const producer = new Producer(client);
 
-    producer.on('ready', async function () {
+    producer.on('ready', function () {
         var message = {
             idRequestBooking: book.idRequestBooking,
             booking_date: book.booking_date,
@@ -117,7 +117,7 @@ exports.sendOffers = (req, res) => {
     const Producer = kafka.HighLevelProducer;
     const producer = new Producer(client);
 
-    var messageR = producer.on('ready', async function () {
+    var messageR = producer.on('ready', function () {
         var message = {
             idRequestBooking: offer.idRequestBooking,
             idServiceOrder: offer.idServiceOrder,

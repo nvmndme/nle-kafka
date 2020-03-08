@@ -33,7 +33,7 @@ function saveToMongoDB(message, dbName, clientMongo) {
         db.collection('booking').insertOne(message, function (err, r) {
             assert.equal(null, err);
             assert.equal(1, r.insertedCount);
-            console.log("Inserted 1 document")
+            console.log("Inserted 1 document");
 
             // client.close();
         });
