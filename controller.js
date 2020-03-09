@@ -23,12 +23,11 @@ exports.bookings = (req, res) => {
 
     consumer.on("message", function (message) {
         booking.push(message.value.toString());
-        // var kafka_topic_child = 'nle-booking-'+message.value.id.toString();
+        // var kafka_topic_child = 'nle-booking-' + message.value.id.toString();
 
         if (message.offset == (message.highWaterOffset - 1)) {
             consumer.close(true, function (err, message) {
                 res.send(JSON.parse(booking));
-                // console.log(booking);
             });
         }
     });
@@ -38,6 +37,12 @@ exports.bookings = (req, res) => {
     });
 
     process.on('SIGINT', function () {
+        consumer.close(true, function () {
+            process.exit();
+        });
+    });
+
+    process.on('SIGHUP', function () {
         consumer.close(true, function () {
             process.exit();
         });
@@ -105,6 +110,24 @@ exports.sendBooking = (req, res) => {
             }
         });
     });
+
+    producer.on('error', function (err) {
+        console.log('error', err);
+    });
+
+    process.on('SIGINT', function () {
+        producer.close(true, function () {
+            process.exit();
+        });
+    });
+
+    process.on('SIGHUP', function () {
+        producer.close(true, function () {
+            process.exit();
+        });
+    });
+
+
 };
 
 exports.sendOffers = (req, res) => {
@@ -146,7 +169,6 @@ exports.sendOffers = (req, res) => {
             if (error) {
                 console.error('error: ', error);
                 res.status(403).send('error');
-                // process.exit();
             } else {
                 var formattedResult = result[0];
                 console.log('result: ', result);
@@ -156,5 +178,20 @@ exports.sendOffers = (req, res) => {
         return sent;
     });
     res.status(200).send(messageR);
-    // producer.close();
+
+    producer.on('error', function (err) {
+        console.log('error', err);
+    });
+
+    process.on('SIGINT', function () {
+        producer.close(true, function () {
+            process.exit();
+        });
+    });
+
+    process.on('SIGHUP', function () {
+        producer.close(true, function () {
+            process.exit();
+        });
+    });
 };
