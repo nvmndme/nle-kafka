@@ -110,7 +110,7 @@ exports.sendBooking = (req, res) => {
 exports.sendOffers = (req, res) => {
     // const offer = req.body;
 
-    const kafka_topic = 'nle-booking-' + book.idRequestBooking.toString();
+    const kafka_topic = 'nle-offer-' + book.idRequestBooking.toString();
     const client = new kafka.KafkaClient({
         kafkaHost: config.kafka_host
     });
