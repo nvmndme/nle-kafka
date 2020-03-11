@@ -8,7 +8,7 @@ module.exports = (app) => {
     app.get('/api/bookings/:uid', contr.bookingUid);
 
     // [PENGGUNA JASA] Post Booking
-    app.post('/bookings', contr.sendBooking);
+    app.post('/api/bookings', contr.sendBooking);
 
     // [PLATFORM] [PENGGUNA JASA] Retrieve all available Offers with Booking Number bn
     app.get('/offers/:bn', contr.offersBn);
