@@ -1,7 +1,7 @@
 module.exports = (app) => {
     const contr = require('./controller.js');
 
-    // [PLATFORM] Retrieve all available Bookings
+    // [PLATFORM] Retrieve all available Bookings from Platform :id
     app.get('/api/bookings', contr.bookings);
 
     // [PLATFORM] [PENGGUNA JASA] Retrieve Booking detail with user id uid
@@ -10,13 +10,12 @@ module.exports = (app) => {
     // [PENGGUNA JASA] Post Booking
     app.post('/api/bookings', contr.sendBooking);
 
-    // [PLATFORM] [PENGGUNA JASA] Retrieve all available Offers with Booking Number bn
-    app.get('/api/offers/:bn', contr.offersBn);
-
-    // [PLATFORM] [PENGGUNA JASA] Retrieve Offer detail with Offer number on
-    app.get('/api/offers/:on', contr.offerOn);
-
     // [PLATFORM] Post Offers for Booking number bn
-    app.post('/api/offers/', contr.sendOffers);
+    app.post('/api/offers', contr.sendOffers);
 
+    // [PENGGUNA JASA] Post Selected Offer
+    app.post('/api/selectOffer', contr.sendSelectedOffer);
+
+    // [PLATFORM] Retrieve Selected Offer
+    app.get('/api/selectOffer', contr.sendSelectedOffer);
 };

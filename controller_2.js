@@ -36,9 +36,9 @@ exports.bookings = (req, res) => {
             booking.push(JSON.parse(message.value.toString()));
 
             if (message.offset == (message.highWaterOffset - 1)) {
-                consumer.close(true, function (err, message) {
-                    res.json(booking);
-                });
+                // consumer.close(true, function (err, message) {
+                res.json(booking);
+                // });
             }
         });
 
@@ -61,6 +61,7 @@ exports.bookings = (req, res) => {
 };
 
 exports.sendBooking = (req, res) => {
+    // const book = JSON.parse(fs.readFileSync('exampleRequestBookingTrue.json'));
     const book = req.body;
     const kafka_topic = 'nle-bookingCreated';
     const client = new kafka.KafkaClient({
@@ -196,3 +197,98 @@ exports.sendOffers = (req, res) => {
         });
     });
 };
+
+// exports.bookingUid = (req, res) => {};
+// exports.offerOn = (req, res) => {};
+
+// exports.bookings = (req, res) => {
+//     var booking = [];
+//     var kafka_topic_parent = 'nle-bookingCreated';
+//     const client = new kafka.KafkaClient({
+//         kafkaHost: config.kafka_host
+//     });
+
+//     var Consumer = kafka.Consumer;
+
+//     var consumer = new Consumer(client, [{
+//         topic: kafka_topic_parent,
+//         partition: 0,
+//         offset: 0
+//     }], {
+//         autoCommit: false,
+//         encoding: 'buffer',
+//         fromOffset: 'earliest'
+//     });
+
+//     consumer.on("message", function (message) {
+//         booking.push(JSON.parse(message.value.toString()));
+
+//         if (message.offset == (message.highWaterOffset - 1)) {
+//             // consumer.close(true, function (err, message) {
+//             res.json(booking);
+//             // });
+//         }
+//     });
+
+//     consumer.on('error', function (err) {
+//         console.log('error', err);
+//     });
+
+//     process.on('SIGINT', function () {
+//         consumer.close(true, function () {
+//             process.exit();
+//         });
+//     });
+
+//     process.on('SIGHUP', function () {
+//         consumer.close(true, function () {
+//             process.exit();
+//         });
+//     });
+// };
+
+// exports.offersBn = (req, res) => {
+//     var offer = [];
+//     var kafka_topic_parent = 'nle-offerCreated';
+//     const client = new kafka.KafkaClient({
+//         kafkaHost: config.kafka_host
+//     });
+
+//     var Consumer = kafka.Consumer;
+
+//     var consumer = new Consumer(client, [{
+//         topic: kafka_topic_parent,
+//         partition: 0,
+//         offset: 0
+//     }], {
+//         autoCommit: false,
+//         encoding: 'buffer',
+//         fromOffset: 'earliest'
+//     });
+
+//     consumer.on("message", function (message) {
+//         offer.push(JSON.parse(message.value.toString()));
+
+//         if (message.offset == (message.highWaterOffset - 1)) {
+//             consumer.close(true, function (err, message) {
+//                 res.json(offer);
+//             });
+//         }
+//     });
+
+//     consumer.on('error', function (err) {
+//         console.log('error', err);
+//     });
+
+//     process.on('SIGINT', function () {
+//         consumer.close(true, function () {
+//             process.exit();
+//         });
+//     });
+
+//     process.on('SIGHUP', function () {
+//         consumer.close(true, function () {
+//             process.exit();
+//         });
+//     });
+// };
