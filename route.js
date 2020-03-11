@@ -11,12 +11,12 @@ module.exports = (app) => {
     app.post('/api/bookings', contr.sendBooking);
 
     // [PLATFORM] [PENGGUNA JASA] Retrieve all available Offers with Booking Number bn
-    app.get('/offers/:bn', contr.offersBn);
+    app.get('/api/offers/:bn', contr.offersBn);
 
     // [PLATFORM] [PENGGUNA JASA] Retrieve Offer detail with Offer number on
-    app.get('/offers/:on', contr.offerOn);
+    app.get('/api/offers/:on', contr.offerOn);
 
     // [PLATFORM] Post Offers for Booking number bn
-    app.post('/offers/', contr.sendOffers);
+    app.post('/api/offers/', contr.sendOffers);
 
 };

@@ -22,12 +22,11 @@ exports.bookings = (req, res) => {
     });
 
     consumer.on("message", function (message) {
-        booking.push(message.value.toString());
-        // var kafka_topic_child = 'nle-booking-' + message.value.id.toString();
+        booking.push(JSON.parse(message.value.toString()));
 
         if (message.offset == (message.highWaterOffset - 1)) {
             consumer.close(true, function (err, message) {
-                res.send(JSON.parse(booking));
+                res.json(booking);
             });
         }
     });
@@ -69,11 +68,11 @@ exports.offersBn = (req, res) => {
     });
 
     consumer.on("message", function (message) {
-        offer.push(message.value.toString());
+        offer.push(JSON.parse(message.value.toString()));
 
         if (message.offset == (message.highWaterOffset - 1)) {
             consumer.close(true, function (err, message) {
-                res.send(JSON.parse(offer));
+                res.json(offer);
             });
         }
     });

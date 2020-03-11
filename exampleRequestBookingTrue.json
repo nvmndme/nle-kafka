@@ -251,7 +251,7 @@
         "kat_platform": null,
         "company": "PT Toms Daya Integra",
         "tcUrl": "http://toms-id.com/itruck_front/term_condition.php",
-        "paymentUrl": "http://toms-id.com/itruck-dev1/view/doku_checkout.php?enc=[ENC_CODE]&id=[ID_REQUEST_BOOKING]"
+        "paymentUrl": "http://toms-id.com/itruck-dev1/view/doku_checkout.php?enc=1&id=2"
     },
     "pod": "MAL"
 }
