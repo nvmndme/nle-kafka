@@ -4,7 +4,7 @@ const fs = require('fs');
 
 exports.bookings = (req, res) => {
     var booking = [];
-    var kafka_topic_parent = 'nle-booking';
+    var kafka_topic_parent = 'nle-bookingCreated';
     const client = new kafka.KafkaClient({
         kafkaHost: config.kafka_host
     });
@@ -49,16 +49,56 @@ exports.bookings = (req, res) => {
     });
 };
 
-exports.bookingUid = (req, res) => {};
+exports.offersBn = (req, res) => {
+    var offer = [];
+    var kafka_topic_parent = 'nle-offerCreated';
+    const client = new kafka.KafkaClient({
+        kafkaHost: config.kafka_host
+    });
 
-exports.offersBn = (req, res) => {};
+    var Consumer = kafka.Consumer;
 
-exports.offerOn = (req, res) => {};
+    var consumer = new Consumer(client, [{
+        topic: kafka_topic_parent,
+        partition: 0,
+        offset: 0
+    }], {
+        autoCommit: false,
+        encoding: 'buffer',
+        fromOffset: 'earliest'
+    });
+
+    consumer.on("message", function (message) {
+        offer.push(message.value.toString());
+
+        if (message.offset == (message.highWaterOffset - 1)) {
+            consumer.close(true, function (err, message) {
+                res.send(JSON.parse(offer));
+            });
+        }
+    });
+
+    consumer.on('error', function (err) {
+        console.log('error', err);
+    });
+
+    process.on('SIGINT', function () {
+        consumer.close(true, function () {
+            process.exit();
+        });
+    });
+
+    process.on('SIGHUP', function () {
+        consumer.close(true, function () {
+            process.exit();
+        });
+    });
+};
 
 exports.sendBooking = (req, res) => {
     const book = JSON.parse(fs.readFileSync('exampleRequestBookingTrue.json'));
     // const book = req.body;
-    const kafka_topic = 'nle-booking';
+    const kafka_topic = 'nle-bookingCreated';
     const client = new kafka.KafkaClient({
         kafkaHost: config.kafka_host
     });
@@ -133,7 +173,7 @@ exports.sendBooking = (req, res) => {
 exports.sendOffers = (req, res) => {
     // const offer = req.body;
 
-    const kafka_topic = 'nle-booking-' + book.idRequestBooking.toString();
+    const kafka_topic = 'nle-offerCreated';
     const client = new kafka.KafkaClient({
         kafkaHost: config.kafka_host
     });
@@ -195,3 +235,6 @@ exports.sendOffers = (req, res) => {
         });
     });
 };
+
+exports.bookingUid = (req, res) => {};
+exports.offerOn = (req, res) => {};
