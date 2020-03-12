@@ -2,13 +2,13 @@ module.exports = (app) => {
     const contr = require('./controller.js');
 
     // [PLATFORM] Retrieve all available Bookings
-    app.get('/api/bookings', contr.bookings);
+    app.get('/api/bookings', contr.booking);
 
     // [PENGGUNA JASA] Post Booking
     app.post('/api/bookings', contr.sendBooking);
 
     // [PLATFORM] Post Offers for Booking number bn
-    app.post('/api/offers', contr.sendOffers);
+    app.post('/api/offers', contr.sendOffer);
 
     // [PENGGUNA JASA] Post checkout Offer
     app.post('/api/checkouts', contr.sendCheckout);
@@ -18,7 +18,4 @@ module.exports = (app) => {
 
     // [PLATFORM] Post payment
     app.post('/api/payments', contr.sendPayment);
-
-    // [PLATFORM] Retrieve payment
-    app.get('/api/payments', contr.payment);
 };

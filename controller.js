@@ -2,7 +2,7 @@ const config = require('./config.js');
 const kafka = require('kafka-node');
 const fs = require('fs');
 
-exports.bookings = (req, res) => {
+exports.booking = (req, res) => {
     if (req.get('Platform-Id') == null) {
         res.status(404).send('Header \"Platform-Id\" was not set.');
     } else {
@@ -132,7 +132,7 @@ exports.sendBooking = (req, res) => {
     });
 };
 
-exports.sendOffers = (req, res) => {
+exports.sendOffer = (req, res) => {
     const offer = req.body;
     const kafka_topic = 'nle-offerCreated';
     const client = new kafka.KafkaClient({
@@ -161,7 +161,7 @@ exports.sendOffers = (req, res) => {
         var payload = [{
             topic: kafka_topic,
             messages: JSON.stringify(message),
-            key: offer.idPlatform.toString() + offer.idRequestBooking.toString(),
+            key: offer.idPlatform.toString() + '-' + offer.idRequestBooking.toString(),
             attributes: 1 /* Use GZip compression for the payload */
         }];
 
@@ -196,3 +196,167 @@ exports.sendOffers = (req, res) => {
         });
     });
 };
+
+exports.sendCheckout = (req, res) => {
+    const checkout = req.body;
+    const kafka_topic = 'nle-checkedOut';
+    const client = new kafka.KafkaClient({
+        kafkaHost: config.kafka_host
+    });
+    const Producer = kafka.HighLevelProducer;
+    const producer = new Producer(client);
+
+    producer.on('ready', function () {
+        var message = {
+            idRequestBooking: checkout.idRequestBooking,
+        
+        };
+
+        var payload = [{
+            topic: kafka_topic,
+            messages: JSON.stringify(message),
+            key: checkout.idRequestBooking.toString() + '-' + checkout.idOffer.toString(),
+            attributes: 1 /* Use GZip compression for the payload */
+        }];
+
+        var sent = producer.send(payload, function (error, result) {
+            console.info('Sent payload to Kafka: ', payload);
+            if (error) {
+                console.error('error: ', error);
+                res.status(403).send('error');
+                process.exit();
+            } else {
+                var formattedResult = result[0];
+                console.log('result: ', result);
+                res.status(200).send(result);
+            }
+        });
+    });
+
+    producer.on('error', function (err) {
+        console.log('error', err);
+    });
+
+    process.on('SIGINT', function () {
+        producer.close(true, function () {
+            process.exit();
+        });
+    });
+
+    process.on('SIGHUP', function () {
+        producer.close(true, function () {
+            process.exit();
+        });
+    });
+}
+
+exports.checkout = (req, res) => {
+    if (req.get('Platform-Id') == null) {
+        res.status(404).send('Header \"Platform-Id\" was not set.');
+    } else {
+        var checkout = [];
+        var groupId = req.get('Platform-Id');
+        var kafka_topic_parent = 'nle-checkedOut';
+        const client = new kafka.KafkaClient({
+            kafkaHost: config.kafka_host
+        });
+
+        var Consumer = kafka.Consumer;
+
+        var consumer = new Consumer(client, [{
+            topic: kafka_topic_parent,
+            partition: 0,
+            // offset: 0
+        }], {
+            autoCommit: true,
+            encoding: 'buffer',
+            autoCommitIntervalMs: 5000,
+            fetchMaxWaitMs: 100,
+            fetchMinBytes: 1,
+            fetchMaxBytes: 1024 * 1024,
+            groupId: groupId,
+            sessionTimeout: 15000,
+            protocol: ['roundrobin'],
+            id: groupId
+        });
+
+        consumer.on("message", function (message) {
+            checkout.push(JSON.parse(message.value.toString()));
+
+            if (message.offset == (message.highWaterOffset - 1)) {
+                consumer.close(true, function (err, message) {
+                    res.json(checkout);
+                });
+            }
+        });
+
+        consumer.on('error', function (err) {
+            console.log('error', err);
+        });
+
+        process.on('SIGINT', function () {
+            consumer.close(true, function () {
+                process.exit();
+            });
+        });
+
+        process.on('SIGHUP', function () {
+            consumer.close(true, function () {
+                process.exit();
+            });
+        });
+    }
+}
+
+exports.sendPayment = (req, res) => {
+    const payment = req.body;
+    const kafka_topic = 'nle-paid';
+    const client = new kafka.KafkaClient({
+        kafkaHost: config.kafka_host
+    });
+    const Producer = kafka.HighLevelProducer;
+    const producer = new Producer(client);
+
+    var messageR = producer.on('ready', function () {
+        var message = {
+            idRequestBooking: payment.idRequestBooking,
+        };
+
+        var payload = [{
+            topic: kafka_topic,
+            messages: JSON.stringify(message),
+            key: payment.idRequestBooking.toString() + '-' + payment.idOffer.toString(),
+            attributes: 1 /* Use GZip compression for the payload */
+        }];
+
+        var sent = producer.send(payload, function (error, result) {
+            console.info('Sent payload to Kafka: ', payload);
+            if (error) {
+                console.error('error: ', error);
+                res.status(403).send('error');
+            } else {
+                var formattedResult = result[0];
+                console.log('result: ', result);
+                return result;
+            }
+        });
+        return sent;
+    });
+    res.status(200).send(messageR);
+
+    producer.on('error', function (err) {
+        console.log('error', err);
+    });
+
+    process.on('SIGINT', function () {
+        producer.close(true, function () {
+            process.exit();
+        });
+    });
+
+    process.on('SIGHUP', function () {
+        producer.close(true, function () {
+            process.exit();
+        });
+    });
+}
