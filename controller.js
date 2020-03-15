@@ -209,7 +209,7 @@ exports.sendCheckout = (req, res) => {
             process.exit();
         });
     });
-}
+};
 
 exports.checkout = (req, res) => {
     if (req.get('Platform-Id') == null) {
@@ -267,7 +267,7 @@ exports.checkout = (req, res) => {
         });
     });
     
-}
+};
 
 exports.sendPayment = (req, res) => {
     const payment = req.body;
@@ -317,4 +317,4 @@ exports.sendPayment = (req, res) => {
             process.exit();
         });
     });
-}
+};
