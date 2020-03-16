@@ -4,5 +4,9 @@ module.exports = {
     // kafka_host: 'localhost:9092',
     port: 3000,
     mongourl: 'mongodb://nle1:nle1@10.161.3.9:27018/nle',
-    dbname: 'nle'
+    dbname: 'nle',
+    bookingTopic: 'nle-bookingCreated',
+    offerTopic: 'nle-offerCreated',
+    checkoutTopic: 'nle-checkedOut',
+    paymentTopic: 'nle-paid'
 };
