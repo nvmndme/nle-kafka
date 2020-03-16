@@ -1,4 +1,4 @@
-const config = require('./config.js');
+const config = require('../config/config.js');
 const kafka = require('kafka-node');
 const fs = require('fs');
 
