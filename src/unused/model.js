@@ -110,4 +110,4 @@ var booking = {
 
 module.exports = {
     booking: booking
-}
+};
