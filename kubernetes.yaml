@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kafka-nle
+spec:
+  selector:
+    matchLabels:
+      app: kafka-nle
+  template:
+    metadata:
+      labels:
+        app: kafka-nle
+    spec:
+      containers:
+      - name: kafka-nle
+        image: <Image>
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 3897
