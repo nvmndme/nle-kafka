@@ -1,6 +1,6 @@
 const config = require('../config/config.js');
 const kafka = require('kafka-node');
-const validator = require('../modules/validator.js');
+const validator = require('../modules/validator');
 // const fs = require('fs');
 
 var Consumer = kafka.Consumer;
