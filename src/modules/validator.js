@@ -1,11 +1,12 @@
 const Joi = require('joi');
 
-exports.validateHeader = (header) => {
-    const schema = Joi.object({
-        a: Joi.string()
-    });
-}
+exports.validateHeader = (groupId) => {
+    if (groupId == null) {
+        res.status(404).send('Header \"Platform-Id\" was not set.');
+        process.exit();
+    }
+};
 
-exports.validateBody = (body) => {
-
-}
+exports.validateBody = (body, schema) => {
+    
+};
