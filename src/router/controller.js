@@ -1,5 +1,6 @@
 const config = require('../config/config.js');
 const kafka = require('kafka-node');
+const validator = require('../modules/validator.js');
 // const fs = require('fs');
 
 var Consumer = kafka.Consumer;
@@ -7,10 +8,8 @@ const Producer = kafka.HighLevelProducer;
 
 exports.booking = (req, res) => {
     groupId = req.get('Platform-Id');
-    if (groupId == null) {
-        res.status(404).send('Header \"Platform-Id\" was not set.');
-        process.exit();
-    }
+    validator.validateHeader(groupId);
+
     var booking = [];
     var kafka_topic = config.bookingTopic;
     const client = new kafka.KafkaClient({
@@ -220,10 +219,9 @@ exports.sendCheckout = (req, res) => {
 };
 
 exports.checkout = (req, res) => {
-    if (req.get('Platform-Id') == null) {
-        res.status(404).send('Header \"Platform-Id\" was not set.');
-        process.exit();
-    }
+    groupId = req.get('Platform-Id');
+    validator.validateHeader(groupId);
+    
     var checkout = [];
     var groupId = req.get('Platform-Id');
     var kafka_topic = config.checkoutTopic;
