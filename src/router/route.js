@@ -1,8 +1,9 @@
 module.exports = (app) => {
     const contr = require('./controller.js');
+    const contr2 = require('./controller2.js');
 
     // [PLATFORM] Retrieve all available Bookings
-    app.get('/api/bookings', contr.booking);
+    app.get('/api/bookings', contr2.booking);
 
     // [PENGGUNA JASA] Post Booking
     app.post('/api/bookings', contr.sendBooking);
@@ -14,7 +15,7 @@ module.exports = (app) => {
     app.post('/api/checkouts', contr.sendCheckout);
 
     // [PLATFORM] Retrieve checkout Offer
-    app.get('/api/checkouts', contr.checkout);
+    app.get('/api/checkouts', contr2.checkout);
 
     // [PLATFORM] Post payment
     app.post('/api/payments', contr.sendPayment);
