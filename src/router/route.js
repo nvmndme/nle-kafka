@@ -18,4 +18,13 @@ module.exports = (app) => {
 
     // [PLATFORM] Post payment
     app.post('/api/payments', contr.sendPayment);
+
+    // [PLATFORM] Post Trucks and Drivers Data
+    app.post('/api/trucks', contr.sendTruckDriver);
+
+    // [PLATFORM] Update Booking Status
+    app.put('/api/bookings/status', contr.sendBookingStatus);
+
+    // [PLATFORM] Update Truck Status
+    app.put('/api/trucks/status', contr.sendTruckStatus);
 };

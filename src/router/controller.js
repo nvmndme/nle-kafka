@@ -330,3 +330,159 @@ exports.sendPayment = (req, res) => {
         });
     });
 };
+
+//belum diedit
+exports.sendTruckDriver = (req, res) => {
+    const payment = req.body;
+    const kafka_topic = config.paymentTopic;
+    const client = new kafka.KafkaClient({
+        kafkaHost: config.kafka_host
+    });
+    const producer = new Producer(client);
+    
+    producer.on('ready', function () {
+        var message = payment;
+        
+        var payload = [{
+            topic: kafka_topic,
+            messages: JSON.stringify(message),
+            key: payment.idRequestBooking.toString() + '-' + payment.idOffer.toString(),
+            attributes: 1 /* Use GZip compression for the payload */
+        }];
+        
+        producer.send(payload, function (error, result) {
+            console.info('Sent payload to Kafka: ', payload);
+            if (error) {
+                console.error('error: ', error);
+                res.status(403).end();
+            } else {
+                console.log('result: ', result);
+                res.status(201).end();
+            }
+        });
+    });
+    
+    producer.on('error', function (err) {
+        console.log('error', err);
+        res.status(408).end();
+        process.exit();
+    });
+    
+    process.on('SIGINT', function () {
+        producer.close(true, function () {
+            res.status(400).end();
+            process.exit();
+        });
+    });
+    
+    process.on('SIGHUP', function () {
+        producer.close(true, function () {
+            res.status(400).end();
+            process.exit();
+        });
+    });
+};
+
+//belum diedit
+exports.sendBookingStatus = (req, res) => {
+    const payment = req.body;
+    const kafka_topic = config.paymentTopic;
+    const client = new kafka.KafkaClient({
+        kafkaHost: config.kafka_host
+    });
+    const producer = new Producer(client);
+    
+    producer.on('ready', function () {
+        var message = payment;
+        
+        var payload = [{
+            topic: kafka_topic,
+            messages: JSON.stringify(message),
+            key: payment.idRequestBooking.toString() + '-' + payment.idOffer.toString(),
+            attributes: 1 /* Use GZip compression for the payload */
+        }];
+        
+        producer.send(payload, function (error, result) {
+            console.info('Sent payload to Kafka: ', payload);
+            if (error) {
+                console.error('error: ', error);
+                res.status(403).end();
+            } else {
+                console.log('result: ', result);
+                res.status(201).end();
+            }
+        });
+    });
+    
+    producer.on('error', function (err) {
+        console.log('error', err);
+        res.status(408).end();
+        process.exit();
+    });
+    
+    process.on('SIGINT', function () {
+        producer.close(true, function () {
+            res.status(400).end();
+            process.exit();
+        });
+    });
+    
+    process.on('SIGHUP', function () {
+        producer.close(true, function () {
+            res.status(400).end();
+            process.exit();
+        });
+    });
+};
+
+//belum diedit
+exports.sendTruckStatus = (req, res) => {
+    const payment = req.body;
+    const kafka_topic = config.paymentTopic;
+    const client = new kafka.KafkaClient({
+        kafkaHost: config.kafka_host
+    });
+    const producer = new Producer(client);
+    
+    producer.on('ready', function () {
+        var message = payment;
+        
+        var payload = [{
+            topic: kafka_topic,
+            messages: JSON.stringify(message),
+            key: payment.idRequestBooking.toString() + '-' + payment.idOffer.toString(),
+            attributes: 1 /* Use GZip compression for the payload */
+        }];
+        
+        producer.send(payload, function (error, result) {
+            console.info('Sent payload to Kafka: ', payload);
+            if (error) {
+                console.error('error: ', error);
+                res.status(403).end();
+            } else {
+                console.log('result: ', result);
+                res.status(201).end();
+            }
+        });
+    });
+    
+    producer.on('error', function (err) {
+        console.log('error', err);
+        res.status(408).end();
+        process.exit();
+    });
+    
+    process.on('SIGINT', function () {
+        producer.close(true, function () {
+            res.status(400).end();
+            process.exit();
+        });
+    });
+    
+    process.on('SIGHUP', function () {
+        producer.close(true, function () {
+            res.status(400).end();
+            process.exit();
+        });
+    });
+};
